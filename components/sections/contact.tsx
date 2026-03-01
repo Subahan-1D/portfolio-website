@@ -1,23 +1,45 @@
 'use client';
 
-import React from "react"
-
+import React, { useState } from "react"
 import { motion } from 'framer-motion';
-import { Mail, Phone, Linkedin, Github, ArrowRight } from 'lucide-react';
-import { useState } from 'react';
+import { Mail, Phone, Linkedin, Github, ArrowRight, Loader2 } from 'lucide-react';
+import emailjs from '@emailjs/browser';
+import { Toaster, toast } from 'sonner'; // Toast এর জন্য
 
 export default function ContactSection() {
+  const [isSubmitting, setIsSubmitting] = useState(false); // Loading state
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Reset form
-    setFormData({ name: '', email: '', message: '' });
+    setIsSubmitting(true);
+
+    // EmailJS keys from .env.local
+    const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!;
+    const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!;
+    const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!;
+
+    try {
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+      };
+
+      await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
+      
+      toast.success('Message sent successfully! I will get back to you soon.');
+      setFormData({ name: '', email: '', message: '' }); // Reset form
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      toast.error('Failed to send message. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactMethods = [
@@ -49,6 +71,9 @@ export default function ContactSection() {
 
   return (
     <section id="contact" className="py-24 relative overflow-hidden">
+      {/* Toast Notification Container */}
+      <Toaster position="top-right" richColors />
+
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-primary/10 rounded-full blur-3xl"></div>
@@ -105,14 +130,16 @@ export default function ContactSection() {
               <p className="text-sm text-muted-foreground mb-4">Follow me on social media</p>
               <div className="flex gap-4">
                 {[
-                  { icon: Linkedin, label: 'LinkedIn' },
-                  { icon: Github, label: 'GitHub' },
+                  { icon: Linkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/in/subahanali523' },
+                  { icon: Github, label: 'GitHub', href: 'https://github.com/Subahan-1D' },
                 ].map((social, idx) => {
                   const Icon = social.icon;
                   return (
                     <motion.a
                       key={idx}
-                      href="#"
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
                       className="w-12 h-12 bg-card border border-border rounded-lg flex items-center justify-center hover:border-accent/50 transition-colors"
@@ -145,7 +172,8 @@ export default function ContactSection() {
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 required
-                className="w-full bg-background border border-border rounded-lg px-4 py-2 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-accent transition"
+                disabled={isSubmitting}
+                className="w-full bg-background border border-border rounded-lg px-4 py-2 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-accent transition disabled:opacity-50"
               />
             </div>
 
@@ -157,7 +185,8 @@ export default function ContactSection() {
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 required
-                className="w-full bg-background border border-border rounded-lg px-4 py-2 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-accent transition"
+                disabled={isSubmitting}
+                className="w-full bg-background border border-border rounded-lg px-4 py-2 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-accent transition disabled:opacity-50"
               />
             </div>
 
@@ -168,19 +197,30 @@ export default function ContactSection() {
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 required
+                disabled={isSubmitting}
                 rows={5}
-                className="w-full bg-background border border-border rounded-lg px-4 py-2 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-accent transition resize-none"
+                className="w-full bg-background border border-border rounded-lg px-4 py-2 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-accent transition resize-none disabled:opacity-50"
               ></textarea>
             </div>
 
             <motion.button
               type="submit"
+              disabled={isSubmitting}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-accent text-accent-foreground rounded-lg font-semibold hover:bg-accent/90 transition"
+              className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-accent text-accent-foreground rounded-lg font-semibold hover:bg-accent/90 transition disabled:opacity-70 disabled:cursor-not-allowed"
             >
-              Send Message
-              <ArrowRight className="w-4 h-4" />
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  Sending...
+                </>
+              ) : (
+                <>
+                  Send Message
+                  <ArrowRight className="w-4 h-4" />
+                </>
+              )}
             </motion.button>
           </motion.form>
         </div>
