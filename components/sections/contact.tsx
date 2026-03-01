@@ -37,13 +37,13 @@ export default function ContactSection() {
       icon: Linkedin,
       label: 'LinkedIn',
       value: 'Connect on LinkedIn',
-      href: '#',
+      href: 'https://www.linkedin.com/in/subahanali523',
     },
     {
       icon: Github,
       label: 'GitHub',
       value: 'Visit my GitHub',
-      href: '#',
+      href: 'https://github.com/Subahan-1D',
     },
   ];
 

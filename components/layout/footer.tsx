@@ -35,10 +35,10 @@ export default function Footer() {
           <motion.div whileHover={{ y: -4 }} className="text-center md:text-right">
             <h3 className="font-semibold mb-4">Connect</h3>
             <div className="flex justify-center md:justify-end gap-4">
-              <a href="https://github.com" className="w-10 h-10 bg-background border border-border rounded-lg flex items-center justify-center hover:border-accent/50 transition">
+              <a href="https://github.com/Subahan-1D" className="w-10 h-10 bg-background border border-border rounded-lg flex items-center justify-center hover:border-accent/50 transition">
                 <Github className="w-5 h-5 text-accent" />
               </a>
-              <a href="https://linkedin.com" className="w-10 h-10 bg-background border border-border rounded-lg flex items-center justify-center hover:border-accent/50 transition">
+              <a href="https://www.linkedin.com/in/subahanali523" className="w-10 h-10 bg-background border border-border rounded-lg flex items-center justify-center hover:border-accent/50 transition">
                 <Linkedin className="w-5 h-5 text-accent" />
               </a>
               <a href="mailto:subahanislam523@gmail.com" className="w-10 h-10 bg-background border border-border rounded-lg flex items-center justify-center hover:border-accent/50 transition">
