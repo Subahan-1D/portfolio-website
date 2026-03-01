@@ -61,10 +61,10 @@ export const projects = [
     description: 'Asset management streamlines asset management for HR managers and employees alike. With intuitive features tailored to their distinct roles, it offers a seamless experience for tracking, maintaining, and utilizing company assets management',
     category: 'Full Stack',
     image: '/assetmanagement.png',
-    technologies: ['Javascript','React','Tailwind CSS','Node.js','Chart.js','MongoDB','Express'],
+    technologies: ['Javascript','React','Tailwind CSS','Node.js','Chart.js','MongoDB','Express' ,'stripe'],
     frontendlink: 'https://github.com/Subahan-1D/asset-management-assignment-12-client',
-    backendlink: 'https://github.com/Subahan-1D/grandview-mansion-hotels-project-server',
-    liveLink: 'https://grandview-hotel-management.web.app',
+    backendlink: 'https://github.com/Subahan-1D/asset-management-assignment-12-server',
+    liveLink: 'https://assignment-assetmanagement.web.app',
   },
  
 ];

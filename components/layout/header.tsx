@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Menu, X } from 'lucide-react'; // Menu এবং X আইকন যোগ করা হয়েছে
+import { ArrowRight, Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
@@ -16,7 +16,7 @@ const navLinks = [
 export default function Header() {
   const [activeSection, setActiveSection] = useState('');
   const [scrolled, setScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // মোবাইল মেনু স্টেট
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -73,7 +73,7 @@ export default function Header() {
         >
           <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-accent/50 group-hover:border-accent transition-colors">
             <Image
-              src="/Subahanvai.png"
+              src="/subahanvai.png"
               alt="Subahan Ali"
               fill
               className="object-cover"

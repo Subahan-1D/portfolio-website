@@ -103,7 +103,7 @@ export default function HeroSection() {
               {/* The Image Container */}
               <div className="relative w-full h-full rounded-full border-4 border-background overflow-hidden shadow-2xl">
                 <Image
-                  src="/Subahanali.png"
+                  src="/herosection.png"
                   alt="Subahan Ali"
                   fill
                   sizes="(max-width: 768px) 256px, 320px"
