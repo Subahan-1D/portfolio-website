@@ -24,7 +24,7 @@ export const metadata: Metadata = {
         media: '(prefers-color-scheme: dark)',
       },
       {
-        url: '/Subahanali.png', 
+        url: '/subahanvai.png', 
         type: 'image/png', 
       },
     ],

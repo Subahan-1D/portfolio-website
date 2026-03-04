@@ -100,7 +100,7 @@ export default function ProjectsSection() {
             href="https://github.com/Subahan-1D"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block px-8 py-3 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors font-medium"
+            className="inline-block px-8 py-3 rounded-lg bg-accent text-primary-foreground hover:bg-accent/90 transition-colors font-medium"
           >
             Visit My GitHub
           </a>

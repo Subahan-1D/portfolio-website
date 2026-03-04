@@ -50,7 +50,7 @@ export default function HeroSection() {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="flex flex-wrap gap-4"
             >
-              <a href="#contact" className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition shadow-lg shadow-primary/25">
+              <a href="#contact" className="flex items-center gap-2 px-6 py-3 bg-accent text-primary-foreground rounded-lg font-semibold transition  hover:bg-accent/90">
                 Get Started
                 <ArrowRight className="w-4 h-4" />
               </a>
